@@ -2,6 +2,7 @@ import requests
 import difflib
 
 def suggest_website_name(site_name):
+
     words = site_name.split()
     combinations = []
     for i in range(1, len(words) + 1):
@@ -9,6 +10,7 @@ def suggest_website_name(site_name):
     return combinations
 
 def get_website_url(site_name):
+    "to fetch the website url"
 
     try:
         site_name = site_name.strip().replace(' ', '')
@@ -17,7 +19,7 @@ def get_website_url(site_name):
         response.raise_for_status()  # Raise an exception if response status is not 
         return response.url
     except requests.exceptions.RequestException:
-        #give suggestions if you can't find the url
+        #give suggestions of likely url if you can't find the url
         suggestions = suggest_website_name(site_name)
         closest_matches = difflib.get_close_matches(site_name, suggestions, n=3, cutoff=0.6)
         suggestion_str = ', '.join(closest_matches)
