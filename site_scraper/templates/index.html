@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Company Website Scraper</title>
+    <title>Site Scraper</title>
     <!-- Add Bootstrap CDN link for styling -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Add custom CSS for additional styling -->
@@ -11,28 +11,44 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 95%;
             margin: auto;
-            padding: 20px;
-            border: 1px solid #dee2e6;
-            border-radius: 5px;
+            padding: 30px;
+            border-radius: 8px;
             background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
             text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+            font-weight: bold;
         }
 
         .form-group {
-            width: 80%;
-            margin: auto;
+            width: 100%;
+            margin-bottom: 20px;
         }
 
         .btn-primary {
             display: block;
             margin: auto;
-            margin-top: 10px;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 200px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
         }
 
         .website-url {
@@ -40,16 +56,33 @@
             font-size: 18px;
             font-weight: bold;
             color: #007bff;
+            margin-top: 40px;
+        }
+
+        /* Footer Styling */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .footer a {
+            color: #6c757d;
+        }
+
+        .footer a:hover {
+            color: #007bff;
         }
     </style>
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="mb-4">Company Website Scraper</h1>
-        <form method="post" class="form-inline">
+        <h1 class="mb-4">Site Scraper</h1>
+        <form method="post">
             {% csrf_token %}
             <div class="form-group">
-                <input type="text" name="site_name" class="form-control mr-2" placeholder="Enter company name">
+                <input type="text" name="site_name" class="form-control" placeholder="Enter company name">
             </div>
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
@@ -58,6 +91,11 @@
             Website URL: {{ website_url }}
         </div>
         {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Created by giftthedeveloper &mdash; If you notice any bugs or issues, feel free to <a href="https://www.linkedin.com/in/gift-jeremiah-1a413024b" target="_blank">reach out via my LinkedIn profile</a>.
     </div>
 </body>
 </html>
