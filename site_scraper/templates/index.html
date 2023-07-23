@@ -15,6 +15,15 @@
             border-radius: 8px;
             background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Add padding and set height to 100vh */
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            min-height: 100vh;
+            /* Center the elements within the container using flexbox */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         h1 {
@@ -45,10 +54,28 @@
 
         /* Center the button on small and medium screens */
         @media (max-width: 767.98px) {
-            .center-button {
-                display: flex;
-                justify-content: center;
+            .container {
+                padding: 15px;
             }
+            .btn-primary {
+                width: 100%;
+            }
+        }
+
+        /* Compact the card height and add spacing utilities */
+        .compact-card {
+            max-height: 300px; /* Adjust the maximum height as needed */
+            overflow: hidden;
+        }
+
+        /* Reduce padding and margin on the card body */
+        .card-body {
+            padding: 0.75rem;
+        }
+
+        /* Remove the tiny line */
+        .card {
+            border: 0;
         }
 
         /* Footer Styling */
@@ -70,22 +97,29 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="mb-4">Site Scraper</h1>
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <input type="text" name="site_name" class="form-control" placeholder="Enter company name">
+        <div class="card compact-card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                        <h1 class="mb-4">Site Scraper</h1>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" name="site_name" class="form-control" placeholder="Enter company name">
+                            </div>
+                            <!-- Center the button on small and medium screens -->
+                            <button type="submit" class="btn btn-primary btn-block">Search</button>
+                        </form>
+                        {% if website_url %}
+                        <!-- Compact the card height -->
+                        <div class="mt-3 website-url compact-card">
+                            Website URL: <a href="{{ website_url }}" target="_blank">{{ website_url }}</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-            <!-- Center the button on small and medium screens -->
-            <div class="center-button">
-                <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-        </form>
-        {% if website_url %}
-        <div class="mt-3 website-url">
-            Website URL: <a href="{{ website_url }}" target="_blank">{{ website_url }}</a>
         </div>
-        {% endif %}
     </div>
 
     <!-- Footer -->
